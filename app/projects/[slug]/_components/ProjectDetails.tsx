@@ -1,12 +1,12 @@
 'use client';
 import parse from 'html-react-parser';
-import ArrowAnimation from '@/components/ArrowAnimation';
 import TransitionLink from '@/components/TransitionLink';
 import { IProject } from '@/types';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
 import { ArrowLeft, ExternalLink, Github } from 'lucide-react';
+import Image from 'next/image';
 import { useRef } from 'react';
 
 interface Props {
@@ -20,185 +20,128 @@ const ProjectDetails = ({ project }: Props) => {
 
     useGSAP(
         () => {
-            if (!containerRef.current) return;
-
-            gsap.set('.fade-in-later', {
+            gsap.from('.project-reveal', {
+                y: 28,
                 autoAlpha: 0,
-                y: 30,
+                stagger: 0.07,
+                duration: 0.6,
+                ease: 'power3.out',
             });
-            const tl = gsap.timeline({
-                delay: 0.5,
-            });
-
-            tl.to('.fade-in-later', {
-                autoAlpha: 1,
-                y: 0,
-                stagger: 0.1,
-            });
-        },
-        { scope: containerRef },
-    );
-
-    // blur info div and make it smaller on scroll
-    useGSAP(
-        () => {
-            if (window.innerWidth < 992) return;
-
-            gsap.to('#info', {
-                filter: 'blur(3px)',
-                autoAlpha: 0,
-                scale: 0.9,
-                // position: 'sticky',
-                scrollTrigger: {
-                    trigger: '#info',
-                    start: 'bottom bottom',
-                    end: 'bottom top',
-                    pin: true,
-                    pinSpacing: false,
-                    scrub: 0.5,
-                },
-            });
-        },
-        { scope: containerRef },
-    );
-
-    // parallax effect on images
-    useGSAP(
-        () => {
-            gsap.utils
-                .toArray<HTMLDivElement>('#images > div')
-                .forEach((imageDiv, i) => {
-                    gsap.to(imageDiv, {
-                        backgroundPosition: `center 0%`,
-                        ease: 'none',
-                        scrollTrigger: {
-                            trigger: imageDiv,
-                            start: () => (i ? 'top bottom' : 'top 50%'),
-                            end: 'bottom top',
-                            scrub: true,
-                            // invalidateOnRefresh: true, // to make it responsive
-                        },
-                    });
-                });
         },
         { scope: containerRef },
     );
 
     return (
-        <section className="pt-5 pb-14">
+        <section className="pb-20 pt-28">
             <div className="container" ref={containerRef}>
                 <TransitionLink
                     back
                     href="/"
-                    className="mb-16 inline-flex gap-2 items-center group h-12"
+                    className="project-reveal mb-8 inline-flex h-11 items-center gap-2 border border-primary/30 bg-primary/10 px-4 text-sm uppercase tracking-[0.2em] text-primary transition hover:bg-primary hover:text-primary-foreground"
                 >
-                    <ArrowLeft className="group-hover:-translate-x-1 group-hover:text-primary transition-all duration-300" />
-                    Back
+                    <ArrowLeft size={18} />
+                    Return
                 </TransitionLink>
 
-                <div
-                    className="top-0 min-h-[calc(100svh-100px)] flex"
-                    id="info"
-                >
-                    <div className="relative w-full">
-                        <div className="flex items-start gap-6 mx-auto mb-10 max-w-[635px]">
-                            <h1 className="fade-in-later opacity-0 text-4xl md:text-[60px] leading-none font-anton overflow-hidden">
-                                <span className="inline-block">
-                                    {project.title}
-                                </span>
-                            </h1>
+                <div className="grid gap-5 lg:grid-cols-[0.95fr_1.05fr]">
+                    <div className="project-reveal hud-panel h-fit p-6 md:p-8 lg:sticky lg:top-24">
+                        <p className="hud-kicker">Project Archive</p>
+                        <h1 className="mt-5 font-anton text-6xl leading-none text-primary text-glow md:text-8xl">
+                            {project.title}
+                        </h1>
 
-                            <div className="fade-in-later opacity-0 flex gap-2">
-                                {project.sourceCode && (
-                                    <a
-                                        href={project.sourceCode}
-                                        target="_blank"
-                                        rel="noreferrer noopener"
-                                        className="hover:text-primary"
-                                    >
-                                        <Github size={30} />
-                                    </a>
-                                )}
-                                {project.liveUrl && (
-                                    <a
-                                        href={project.liveUrl}
-                                        target="_blank"
-                                        rel="noreferrer noopener"
-                                        className="hover:text-primary"
-                                    >
-                                        <ExternalLink size={30} />
-                                    </a>
-                                )}
+                        <div className="mt-8 grid grid-cols-2 gap-3">
+                            <div className="hud-readout">Year: {project.year}</div>
+                            <div className="hud-readout">
+                                Images: {project.images.length}
                             </div>
                         </div>
 
-                        <div className="max-w-[635px] space-y-7 pb-20 mx-auto">
-                            <div className="fade-in-later">
-                                <p className="text-muted-foreground font-anton mb-3">
-                                    Year
-                                </p>
+                        <div className="mt-6 flex flex-wrap gap-2">
+                            {project.techStack.map((tech) => (
+                                <span
+                                    key={tech}
+                                    className="border border-primary/15 bg-primary/5 px-3 py-1 text-xs uppercase tracking-[0.16em] text-muted-foreground"
+                                >
+                                    {tech}
+                                </span>
+                            ))}
+                        </div>
 
-                                <div className="text-lg">{project.year}</div>
-                            </div>
-                            <div className="fade-in-later">
-                                <p className="text-muted-foreground font-anton mb-3">
-                                    Tech & Technique
-                                </p>
-
-                                <div className="text-lg">
-                                    {project.techStack.join(', ')}
-                                </div>
-                            </div>
-                            <div className="fade-in-later">
-                                <p className="text-muted-foreground font-anton mb-3">
-                                    Description
-                                </p>
-
-                                <div className="text-lg prose-xl markdown-text">
-                                    {parse(project.description)}
-                                </div>
-                            </div>
-                            {project.role && (
-                                <div className="fade-in-later">
-                                    <p className="text-muted-foreground font-anton mb-3">
-                                        My Role
-                                    </p>
-
-                                    <div className="text-lg">
-                                        {parse(project.role)}
-                                    </div>
-                                </div>
+                        <div className="mt-8 flex gap-3">
+                            {project.sourceCode && (
+                                <a
+                                    href={project.sourceCode}
+                                    target="_blank"
+                                    rel="noreferrer noopener"
+                                    className="flex size-11 items-center justify-center border border-primary/30 text-primary transition hover:bg-primary hover:text-primary-foreground"
+                                    aria-label="Source code"
+                                >
+                                    <Github size={20} />
+                                </a>
+                            )}
+                            {project.liveUrl && (
+                                <a
+                                    href={project.liveUrl}
+                                    target="_blank"
+                                    rel="noreferrer noopener"
+                                    className="flex size-11 items-center justify-center border border-primary/30 text-primary transition hover:bg-primary hover:text-primary-foreground"
+                                    aria-label="Live site"
+                                >
+                                    <ExternalLink size={20} />
+                                </a>
                             )}
                         </div>
-
-                        <ArrowAnimation />
                     </div>
-                </div>
 
-                <div
-                    className="fade-in-later relative flex flex-col gap-2 max-w-[800px] mx-auto"
-                    id="images"
-                >
-                    {project.images.map((image) => (
-                        <div
-                            key={image}
-                            className="group relative w-full aspect-[750/400] bg-background-light"
-                            style={{
-                                backgroundImage: `url(${image})`,
-                                backgroundSize: 'cover',
-                                backgroundPosition: 'center 50%',
-                                backgroundRepeat: 'no-repeat',
-                            }}
-                        >
-                            <a
-                                href={image}
-                                target="_blank"
-                                className="absolute top-4 right-4 bg-background/70 text-foreground size-12 inline-flex justify-center items-center transition-all opacity-0 hover:bg-primary hover:text-primary-foreground group-hover:opacity-100"
-                            >
-                                <ExternalLink />
-                            </a>
+                    <div className="grid gap-5">
+                        <div className="project-reveal hud-panel p-6 md:p-8">
+                            <p className="hud-kicker">System Brief</p>
+                            <div className="markdown-text mt-5 text-lg leading-8 text-muted-foreground">
+                                {parse(project.description)}
+                            </div>
                         </div>
-                    ))}
+
+                        {project.role && (
+                            <div className="project-reveal hud-panel p-6 md:p-8">
+                                <p className="hud-kicker">Role Matrix</p>
+                                <div className="markdown-text mt-5 text-lg leading-8 text-muted-foreground">
+                                    {parse(project.role)}
+                                </div>
+                            </div>
+                        )}
+
+                        <div className="project-reveal grid gap-4">
+                            {project.images.map((image, index) => (
+                                <a
+                                    href={image}
+                                    target="_blank"
+                                    key={image}
+                                    className="hud-panel group block overflow-hidden"
+                                >
+                                    <div className="flex items-center justify-between border-b border-primary/15 px-4 py-3">
+                                        <p className="hud-kicker">
+                                            Capture{' '}
+                                            {(index + 1)
+                                                .toString()
+                                                .padStart(2, '0')}
+                                        </p>
+                                        <ExternalLink
+                                            size={16}
+                                            className="text-primary"
+                                        />
+                                    </div>
+                                    <Image
+                                        src={image}
+                                        alt={`${project.title} screenshot ${index + 1}`}
+                                        width="1100"
+                                        height="620"
+                                        className="h-auto w-full object-cover object-top opacity-85 transition duration-700 group-hover:scale-[1.02] group-hover:opacity-100"
+                                    />
+                                </a>
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

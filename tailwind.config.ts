@@ -65,14 +65,14 @@ export default {
                 'roboto-flex': ['var(--font-roboto-flex)'],
             },
             padding: {
-                section: '250px',
+                section: '140px',
             },
             container: {
                 center: true,
-                padding: '1rem',
+                padding: '1.25rem',
                 screens: {
-                    xl: '1148px',
-                    '2xl': '1148px',
+                    xl: '1200px',
+                    '2xl': '1200px',
                 },
             },
             transitionDuration: {

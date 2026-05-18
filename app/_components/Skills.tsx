@@ -14,118 +14,55 @@ const Skills = () => {
 
     useGSAP(
         () => {
-            const slideUpEl =
-                containerRef.current?.querySelectorAll('.slide-up');
-
-            if (!slideUpEl?.length) return;
-
-            const tl = gsap.timeline({
+            gsap.from('.stack-node', {
                 scrollTrigger: {
                     trigger: containerRef.current,
-                    start: 'top 80%',
-                    end: 'bottom 80%',
-                    scrub: 0.5,
+                    start: 'top 75%',
                 },
-            });
-
-            tl.from('.slide-up', {
                 opacity: 0,
-                y: 40,
-                ease: 'none',
-                stagger: 0.4,
-            });
-        },
-        { scope: containerRef },
-    );
-
-    useGSAP(
-        () => {
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: 'bottom 50%',
-                    end: 'bottom 10%',
-                    scrub: 1,
-                },
-            });
-
-            tl.to(containerRef.current, {
-                y: -150,
-                opacity: 0,
+                y: 28,
+                stagger: 0.035,
+                duration: 0.5,
+                ease: 'power2.out',
             });
         },
         { scope: containerRef },
     );
 
     return (
-        <section id="my-stack" ref={containerRef}>
+        <section id="my-stack" className="py-section" ref={containerRef}>
             <div className="container">
-                <SectionTitle title="My Stack" />
+                <SectionTitle title="Technology Grid" />
 
-                <div className="space-y-20">
+                <div className="grid gap-5">
                     {Object.entries(MY_STACK).map(([key, value]) => (
-                        <div className="grid sm:grid-cols-12" key={key}>
-                            <div className="sm:col-span-5">
-                                <p className="slide-up text-5xl font-anton leading-none text-muted-foreground uppercase">
+                        <div
+                            className="hud-panel grid gap-6 p-5 md:grid-cols-[220px_1fr] md:p-7"
+                            key={key}
+                        >
+                            <div>
+                                <p className="hud-kicker">Module</p>
+                                <p className="mt-3 font-anton text-4xl uppercase leading-none text-primary">
                                     {key}
                                 </p>
                             </div>
 
-                            <div className="sm:col-span-7 flex gap-x-11 gap-y-9 flex-wrap">
+                            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
                                 {value.map((item) => (
                                     <div
-                                        className="slide-up flex gap-3.5 items-center leading-none"
+                                        className="stack-node group flex min-h-20 items-center gap-3 border border-primary/15 bg-black/25 p-3 transition hover:border-primary/50 hover:bg-primary/10"
                                         key={item.name}
                                     >
-                                        <div>
+                                        <div className="flex size-11 shrink-0 items-center justify-center border border-primary/15 bg-background/70">
                                             <Image
                                                 src={item.icon}
                                                 alt={item.name}
-                                                width="40"
-                                                height="40"
-                                                className="max-h-10"
+                                                width="34"
+                                                height="34"
+                                                className="max-h-8 object-contain opacity-90 transition group-hover:scale-110"
                                             />
                                         </div>
-                                        <span className="text-2xl capitalize">
-                                            {item.name}
-                                        </span>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </section>
-    );
-
-    return (
-        <section id="my-stack" ref={containerRef}>
-            <div className="container">
-                <SectionTitle title="My Stack" />
-
-                <div className="space-y-20">
-                    {Object.entries(MY_STACK).map(([key, value]) => (
-                        <div className="grid sm:grid-cols-12" key={key}>
-                            <div className="sm:col-span-5">
-                                <p className="slide-up text-5xl font-anton leading-none text-muted-foreground uppercase">
-                                    {key}
-                                </p>
-                            </div>
-                            <div className="sm:col-span-7 flex gap-x-11 gap-y-9 flex-wrap">
-                                {value.map((item) => (
-                                    <div
-                                        className="slide-up flex gap-3.5 items-center leading-none"
-                                        key={item.name}
-                                    >
-                                        <Image
-                                            src={item.icon}
-                                            alt={item.name}
-                                            width="40"
-                                            height="40"
-                                            className="h-10"
-                                        />
-                                        <span className="text-2xl capitalize">
+                                        <span className="text-sm font-medium capitalize text-foreground">
                                             {item.name}
                                         </span>
                                     </div>

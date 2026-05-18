@@ -11,58 +11,59 @@ const Preloader = () => {
     useGSAP(
         () => {
             const tl = gsap.timeline({
-                defaults: {
-                    ease: 'power1.inOut',
-                },
+                defaults: { ease: 'power2.inOut' },
             });
 
-            tl.to('.name-text span', {
-                y: 0,
-                stagger: 0.05,
-                duration: 0.2,
-            });
-
-            tl.to('.preloader-item', {
-                delay: 1,
-                y: '100%',
-                duration: 0.5,
-                stagger: 0.1,
+            tl.from('.boot-line', {
+                scaleX: 0,
+                transformOrigin: 'left center',
+                stagger: 0.08,
+                duration: 0.35,
             })
-                .to('.name-text span', { autoAlpha: 0 }, '<0.5')
-                .to(
-                    preloaderRef.current,
-                    {
-                        autoAlpha: 0,
-                    },
-                    '<1',
-                );
+                .to('.boot-copy', {
+                    opacity: 1,
+                    y: 0,
+                    stagger: 0.06,
+                    duration: 0.25,
+                })
+                .to(preloaderRef.current, {
+                    autoAlpha: 0,
+                    duration: 0.45,
+                    delay: 0.55,
+                });
         },
         { scope: preloaderRef },
     );
 
     return (
-        <div className="fixed inset-0 z-[6] flex" ref={preloaderRef}>
-            <div className="preloader-item h-full w-[10%] bg-black"></div>
-            <div className="preloader-item h-full w-[10%] bg-black"></div>
-            <div className="preloader-item h-full w-[10%] bg-black"></div>
-            <div className="preloader-item h-full w-[10%] bg-black"></div>
-            <div className="preloader-item h-full w-[10%] bg-black"></div>
-            <div className="preloader-item h-full w-[10%] bg-black"></div>
-            <div className="preloader-item h-full w-[10%] bg-black"></div>
-            <div className="preloader-item h-full w-[10%] bg-black"></div>
-            <div className="preloader-item h-full w-[10%] bg-black"></div>
-            <div className="preloader-item h-full w-[10%] bg-black"></div>
-
-            <p className="name-text flex text-[20vw] lg:text-[200px] font-anton text-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 leading-none overflow-hidden">
-                <span className="inline-block translate-y-full">T</span>
-                <span className="inline-block translate-y-full">A</span>
-                <span className="inline-block translate-y-full">J</span>
-                <span className="inline-block translate-y-full">M</span>
-                <span className="inline-block translate-y-full">I</span>
-                <span className="inline-block translate-y-full">R</span>
-                <span className="inline-block translate-y-full">U</span>
-                <span className="inline-block translate-y-full">L</span>
-            </p>
+        <div
+            className="fixed inset-0 z-[6] grid place-items-center bg-background"
+            ref={preloaderRef}
+        >
+            <div className="hud-panel scanline w-[min(520px,calc(100vw-2rem))] p-6">
+                <p className="hud-kicker boot-copy translate-y-2 opacity-0">
+                    Welcome to
+                </p>
+                <h2 className="boot-copy mt-4 font-anton text-5xl leading-none text-primary opacity-0 text-glow sm:text-7xl">
+                    FARDIN'S PORTFOLIO
+                </h2>
+                <div className="mt-6 space-y-3">
+                    {[86, 64, 92, 51].map((width, index) => (
+                        <div
+                            key={index}
+                            className="h-2 border border-primary/20 bg-primary/5"
+                        >
+                            <span
+                                className="boot-line block h-full bg-primary/70 shadow-[0_0_16px_hsl(var(--primary))]"
+                                style={{ width: `${width}%` }}
+                            />
+                        </div>
+                    ))}
+                </div>
+                <p className="boot-copy mt-5 translate-y-2 text-xs uppercase tracking-[0.24em] text-muted-foreground opacity-0">
+                    Loading portfolio interface
+                </p>
+            </div>
         </div>
     );
 };

@@ -1,67 +1,47 @@
-import { GENERAL_INFO } from '@/lib/data';
-import { GitFork, Star } from 'lucide-react';
+import { GENERAL_INFO, SOCIAL_LINKS } from '@/lib/data';
+import { Mail, SatelliteDish } from 'lucide-react';
 
-interface RepoStats {
-    stargazers_count: number;
-    forks_count: number;
-}
-
-const Footer = async () => {
-    const repoStats = await fetch(
-        'https://api.github.com/repos/tajmirul/portfolio-2.0',
-        {
-            next: {
-                revalidate: 60 * 60, // 1 hour
-            },
-        },
-    );
-
-    const { stargazers_count, forks_count } =
-        (await repoStats.json()) as RepoStats;
-
+const Footer = () => {
     return (
-        <footer className="text-center pb-5" id="contact">
+        <footer className="pb-8 pt-section" id="contact">
             <div className="container">
-                <p className="text-lg">Have a project in mind?</p>
-                <a
-                    href={`mailto:${GENERAL_INFO.email}`}
-                    className="text-3xl sm:text-4xl font-anton inline-block mt-5 mb-10 hover:underline"
-                >
-                    {GENERAL_INFO.email}
-                </a>
+                <div className="hud-panel grid gap-8 p-6 md:grid-cols-[1fr_auto] md:p-8">
+                    <div>
+                        <p className="hud-kicker">Final Transmission</p>
+                        <h2 className="mt-4 font-anton text-5xl leading-none text-primary text-glow md:text-7xl">
+                            BUILD THE NEXT INTERFACE
+                        </h2>
+                        <a
+                            href={`mailto:${GENERAL_INFO.email}`}
+                            className="mt-6 inline-flex items-center gap-3 text-lg text-foreground transition hover:text-primary"
+                        >
+                            <Mail size={20} />
+                            {GENERAL_INFO.email}
+                        </a>
+                    </div>
 
-                <div className="">
-                    <a
-                        href="https://github.com/Tajmirul/portfolio-2.0"
-                        target="_blank"
-                        className="leading-none text-muted-foreground hover:underline hover:text-white"
-                    >
-                        Design & built by Tajmirul Islam
-                        <div className="flex items-center justify-center gap-5 pt-1">
-                            <span className="flex items-center gap-2">
-                                <Star size={18} /> {stargazers_count}
-                            </span>
-                            <span className="flex items-center gap-2">
-                                <GitFork size={18} /> {forks_count}
-                            </span>
+                    <div className="min-w-[220px] border border-primary/15 bg-black/25 p-5">
+                        <SatelliteDish className="text-secondary" />
+                        <p className="hud-kicker mt-5">Channels</p>
+                        <div className="mt-4 flex flex-col gap-3">
+                            {SOCIAL_LINKS.slice(0, 3).map((link) => (
+                                <a
+                                    key={link.name}
+                                    href={link.url}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="capitalize text-muted-foreground transition hover:text-primary"
+                                >
+                                    {link.name}
+                                </a>
+                            ))}
                         </div>
-                    </a>
-
-                    {/* Note: If you are not Tajmirul, use this copyright message instead */}
-                    {/* <a href='https://www.me.toinfinite.dev/' className="leading-none text-muted-foreground hover:underline hover:text-white">
-                        Design & built by Tajmirul Islam <br />
-                        Revised by YOUR NAME
-
-                        <div className="flex items-center justify-center gap-5 pt-1">
-                            <span className='flex items-center gap-2'>
-                                <Star size={14} /> {stargazers_count}
-                            </span>
-                            <span className='flex items-center gap-2'>
-                                <GitFork size={14} /> {forks_count}
-                            </span>
-                        </div>
-                    </a> */}
+                    </div>
                 </div>
+
+                <p className="mt-5 text-center text-xs uppercase tracking-[0.24em] text-muted-foreground">
+                    Designed and built by Fardin Saraf
+                </p>
             </div>
         </footer>
     );

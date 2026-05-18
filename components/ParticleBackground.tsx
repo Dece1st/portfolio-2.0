@@ -6,38 +6,40 @@ import { useRef } from 'react';
 gsap.registerPlugin(useGSAP);
 
 const ParticleBackground = () => {
-    const particlesRef = useRef<HTMLDivElement[]>([]);
+    const nodesRef = useRef<HTMLSpanElement[]>([]);
 
     useGSAP(() => {
-        particlesRef.current.forEach((particle) => {
-            gsap.set(particle, {
-                width: Math.random() * 3 + 1,
-                height: Math.random() * 3 + 1,
-                opacity: Math.random(),
-                left: Math.random() * window.innerWidth,
-                top: Math.random() * (window.innerHeight + 1),
+        nodesRef.current.forEach((node, index) => {
+            gsap.set(node, {
+                x: `${(index * 37) % 100}vw`,
+                y: `${(index * 19) % 100}vh`,
+                opacity: 0.15 + Math.random() * 0.45,
             });
 
-            gsap.to(particle, {
-                y: window.innerHeight,
-                duration: Math.random() * 10 + 10,
-                opacity: 0,
+            gsap.to(node, {
+                x: `+=${Math.random() * 80 - 40}`,
+                y: `+=${Math.random() * 80 - 40}`,
+                opacity: 0.08 + Math.random() * 0.4,
+                duration: 6 + Math.random() * 8,
                 repeat: -1,
-                ease: 'none',
-                // yoyo: true,
+                yoyo: true,
+                ease: 'sine.inOut',
+                delay: index * 0.03,
             });
         });
     }, []);
 
     return (
-        <div className="fixed inset-0 z-0 pointer-events-none">
-            {[...Array(100)].map((_, i) => (
-                <div
+        <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+            <div className="absolute left-1/2 top-1/2 h-[80vmin] w-[80vmin] -translate-x-1/2 -translate-y-1/2 rounded-full border border-primary/10" />
+            <div className="absolute left-1/2 top-1/2 h-[54vmin] w-[54vmin] -translate-x-1/2 -translate-y-1/2 rounded-full border border-secondary/10" />
+            {[...Array(42)].map((_, i) => (
+                <span
                     key={i}
                     ref={(el) => {
-                        particlesRef.current.push(el!);
+                        if (el) nodesRef.current[i] = el;
                     }}
-                    className="absolute rounded-full bg-white"
+                    className="absolute size-1 bg-primary shadow-[0_0_18px_hsl(var(--primary))]"
                 />
             ))}
         </div>

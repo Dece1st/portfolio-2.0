@@ -1,7 +1,7 @@
 'use client';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
-import { MoveUpRight } from 'lucide-react';
+import { CircuitBoard, Menu, MoveUpRight, X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { GENERAL_INFO, SOCIAL_LINKS } from '@/lib/data';
 
@@ -37,37 +37,57 @@ const Navbar = () => {
 
     return (
         <>
-            <div className="sticky top-0 z-[4]">
+            <div className="sticky top-0 z-[4] pointer-events-none">
+                <div className="container pt-4">
+                    <div className="hud-panel pointer-events-auto flex h-14 items-center justify-between px-4">
+                        <button
+                            onClick={() => router.push('/')}
+                            className="flex items-center gap-3 text-left"
+                        >
+                            <span className="flex size-9 items-center justify-center border border-primary/35 bg-primary/10 text-primary">
+                                <CircuitBoard size={18} />
+                            </span>
+                            <span>
+                                <span className="block font-anton text-lg leading-none tracking-wide text-glow">
+                                    FARDIN SARAF
+                                </span>
+                                <span className="hud-kicker block text-[10px]">
+                                    Interface online
+                                </span>
+                            </span>
+                        </button>
+
+                        <nav className="hidden items-center gap-1 md:flex">
+                            {MENU_LINKS.slice(1).map((link) => (
+                                <button
+                                    key={link.name}
+                                    onClick={() => router.push(link.url)}
+                                    className="px-4 py-2 text-xs uppercase tracking-[0.2em] text-muted-foreground transition hover:bg-primary/10 hover:text-primary"
+                                >
+                                    {link.name}
+                                </button>
+                            ))}
+                        </nav>
+                    </div>
+                </div>
                 <button
                     className={cn(
-                        'group size-12 absolute top-5 right-5 md:right-10 z-[2]',
+                        'group pointer-events-auto size-12 absolute top-5 right-5 md:right-10 z-[2] border border-primary/30 bg-background/80 text-primary backdrop-blur',
                     )}
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
+                    aria-label="Toggle navigation"
                 >
-                    <span
-                        className={cn(
-                            'inline-block w-3/5 h-0.5 bg-foreground rounded-full absolute left-1/2 -translate-x-1/2 top-1/2 duration-300 -translate-y-[5px] ',
-                            {
-                                'rotate-45 -translate-y-1/2': isMenuOpen,
-                                'md:group-hover:rotate-12': !isMenuOpen,
-                            },
-                        )}
-                    ></span>
-                    <span
-                        className={cn(
-                            'inline-block w-3/5 h-0.5 bg-foreground rounded-full absolute left-1/2 -translate-x-1/2 top-1/2 duration-300 translate-y-[5px] ',
-                            {
-                                '-rotate-45 -translate-y-1/2': isMenuOpen,
-                                'md:group-hover:-rotate-12': !isMenuOpen,
-                            },
-                        )}
-                    ></span>
+                    {isMenuOpen ? (
+                        <X className="mx-auto" size={20} />
+                    ) : (
+                        <Menu className="mx-auto" size={20} />
+                    )}
                 </button>
             </div>
 
             <div
                 className={cn(
-                    'overlay fixed inset-0 z-[2] bg-black/70 transition-all duration-150',
+                    'overlay fixed inset-0 z-[2] bg-black/75 backdrop-blur-sm transition-all duration-150',
                     {
                         'opacity-0 invisible pointer-events-none': !isMenuOpen,
                     },
@@ -77,24 +97,15 @@ const Navbar = () => {
 
             <div
                 className={cn(
-                    'fixed top-0 right-0 h-[100dvh] w-[500px] max-w-[calc(100vw-3rem)] transform translate-x-full transition-transform duration-700 z-[3] overflow-hidden gap-y-14',
-                    'flex flex-col lg:justify-center py-10',
+                    'fixed top-0 right-0 h-[100dvh] w-[500px] max-w-[calc(100vw-2rem)] transform translate-x-full transition-transform duration-700 z-[3] overflow-hidden gap-y-14',
+                    'hud-panel flex flex-col lg:justify-center py-10',
                     { 'translate-x-0': isMenuOpen },
                 )}
             >
-                <div
-                    className={cn(
-                        'fixed inset-0 scale-150 translate-x-1/2 rounded-[50%] bg-background-light duration-700 delay-150 z-[-1]',
-                        {
-                            'translate-x-0': isMenuOpen,
-                        },
-                    )}
-                ></div>
-
                 <div className="grow flex md:items-center w-full max-w-[300px] mx-8 sm:mx-auto">
                     <div className="flex gap-10 lg:justify-between max-lg:flex-col w-full">
                         <div className="max-lg:order-2">
-                            <p className="text-muted-foreground mb-5 md:mb-8">
+                            <p className="hud-kicker mb-5 md:mb-8">
                                 SOCIAL
                             </p>
                             <ul className="space-y-3">
@@ -104,7 +115,7 @@ const Navbar = () => {
                                             href={link.url}
                                             target="_blank"
                                             rel="noreferrer"
-                                            className="text-lg capitalize hover:underline"
+                                            className="text-lg capitalize text-muted-foreground transition hover:text-primary"
                                         >
                                             {link.name}
                                         </a>
@@ -113,7 +124,7 @@ const Navbar = () => {
                             </ul>
                         </div>
                         <div className="">
-                            <p className="text-muted-foreground mb-5 md:mb-8">
+                            <p className="hud-kicker mb-5 md:mb-8">
                                 MENU
                             </p>
                             <ul className="space-y-3">
@@ -124,11 +135,11 @@ const Navbar = () => {
                                                 router.push(link.url);
                                                 setIsMenuOpen(false);
                                             }}
-                                            className="group text-xl flex items-center gap-3"
+                                            className="group text-xl flex items-center gap-3 transition hover:text-primary"
                                         >
                                             <span
                                                 className={cn(
-                                                    'size-3.5 bg-white/20 rounded-full flex items-center justify-center group-hover:scale-[200%] transition-all',
+                                                    'size-3.5 bg-white/20 flex items-center justify-center group-hover:scale-[200%] transition-all',
                                                     COLORS[idx],
                                                 )}
                                             >
@@ -147,8 +158,11 @@ const Navbar = () => {
                 </div>
 
                 <div className="w-full max-w-[300px] mx-8 sm:mx-auto">
-                    <p className="text-muted-foreground mb-4">GET IN TOUCH</p>
-                    <a href={`mailto:${GENERAL_INFO.email}`}>
+                    <p className="hud-kicker mb-4">GET IN TOUCH</p>
+                    <a
+                        href={`mailto:${GENERAL_INFO.email}`}
+                        className="text-primary"
+                    >
                         {GENERAL_INFO.email}
                     </a>
                 </div>

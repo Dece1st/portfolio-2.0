@@ -32,8 +32,9 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ## 🤝 Contributing
 If you'd like to contribute or suggest improvements, feel free to open an issue or submit a pull request. All contributions are welcome!
 
-## Credit
-_This readme is inspired from [Brittany Chiang's github](https://github.com/bchiang7/v4)_
+## Credits
+- Forked from Tajmirul Islam's portfolio: [tajmirul.site](https://tajmirul.site/)
+- _This readme is inspired from [Brittany Chiang's github](https://github.com/bchiang7/v4)_
 
 ## 📄 License
 This project is open source and available under the [MIT License](https://github.com/Tajmirul/portfolio-2.0/blob/main/LICENSE).

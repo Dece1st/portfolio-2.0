@@ -1,5 +1,4 @@
 import { ReactNode } from 'react';
-import { SectionFlower } from './icons';
 import { cn } from '@/lib/utils';
 
 interface Props {
@@ -25,17 +24,16 @@ const SectionTitle = ({ icon, title, className, classNames }: Props) => {
             {icon ? (
                 icon
             ) : (
-                <SectionFlower
-                    width={25}
+                <span
                     className={cn(
-                        'animate-spin duration-7000',
+                        'relative size-5 border border-primary/50 before:absolute before:left-1/2 before:top-1/2 before:size-2 before:-translate-x-1/2 before:-translate-y-1/2 before:bg-primary before:shadow-[0_0_18px_hsl(var(--primary))]',
                         classNames?.icon,
                     )}
                 />
             )}
             <h2
                 className={cn(
-                    'text-xl uppercase leading-none',
+                    'hud-kicker text-sm leading-none text-foreground',
                     classNames?.title,
                 )}
             >

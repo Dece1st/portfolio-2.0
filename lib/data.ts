@@ -1,10 +1,10 @@
 import { IProject } from '@/types';
 
 export const GENERAL_INFO = {
-    email: 'tasmirolislam@gmail.com',
+    email: 'ffsaraf12@gmail.com',
 
     emailSubject: "Let's collaborate on a project",
-    emailBody: 'Hi Tajmirul, I am reaching out to you because...',
+    emailBody: 'Hi Fardin, I am reaching out to you because...',
 
     oldPortfolio: 'https://www.legacy.me.toinfinite.dev',
     upworkProfile: 'https://www.upwork.com/freelancers/tajmirul',
@@ -18,6 +18,16 @@ export const SOCIAL_LINKS = [
 ];
 
 export const MY_STACK = {
+    languages: [
+        {
+            name: 'Python',
+            icon: '/logo/python.svg',
+        },
+        {
+            name: 'C++',
+            icon: '/logo/cpp.svg',
+        },
+    ],
     frontend: [
         {
             name: 'JavaScript',
@@ -36,28 +46,8 @@ export const MY_STACK = {
             icon: '/logo/next.png',
         },
         {
-            name: 'Redux',
-            icon: '/logo/redux.png',
-        },
-        {
             name: 'Tailwind CSS',
             icon: '/logo/tailwind.png',
-        },
-        {
-            name: 'GSAP',
-            icon: '/logo/gsap.png',
-        },
-        {
-            name: 'Framer Motion',
-            icon: '/logo/framer-motion.png',
-        },
-        {
-            name: 'Sass',
-            icon: '/logo/sass.png',
-        },
-        {
-            name: 'Bootstrap',
-            icon: '/logo/bootstrap.svg',
         },
     ],
     backend: [
@@ -76,10 +66,6 @@ export const MY_STACK = {
     ],
     database: [
         {
-            name: 'MySQL',
-            icon: '/logo/mysql.svg',
-        },
-        {
             name: 'PostgreSQL',
             icon: '/logo/postgreSQL.png',
         },
@@ -88,8 +74,12 @@ export const MY_STACK = {
             icon: '/logo/mongodb.svg',
         },
         {
-            name: 'Prisma',
-            icon: '/logo/prisma.png',
+            name: 'Firebase',
+            icon: '/logo/firebase.svg',
+        },
+        {
+            name: 'Supabase',
+            icon: '/logo/supabase.svg',
         },
     ],
     tools: [
