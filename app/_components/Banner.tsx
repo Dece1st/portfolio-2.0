@@ -1,19 +1,12 @@
 'use client';
 import Button from '@/components/Button';
-import { GENERAL_INFO, PROJECTS } from '@/lib/data';
+import { GENERAL_INFO } from '@/lib/data';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/all';
 import { Cpu, Database, Radar, Terminal } from 'lucide-react';
 import React from 'react';
 
-gsap.registerPlugin(ScrollTrigger, useGSAP);
-
-const systemStats = [
-    { label: 'Projects', value: PROJECTS.length.toString().padStart(2, '0') },
-    { label: 'Stack Nodes', value: '18' },
-    { label: 'Build Focus', value: 'UI' },
-];
+gsap.registerPlugin(useGSAP);
 
 const Banner = () => {
     const containerRef = React.useRef<HTMLDivElement>(null);
@@ -41,48 +34,40 @@ const Banner = () => {
 
     return (
         <section
-            className="relative overflow-hidden pt-24 md:min-h-screen md:pt-28"
+            className="relative overflow-hidden"
             id="banner"
             ref={containerRef}
         >
-            <div className="container grid min-h-[calc(100svh-7rem)] items-center gap-8 py-12 lg:grid-cols-[1.05fr_0.95fr]">
+            <div className="container grid min-h-[calc(100svh-4.5rem)] items-center gap-8 py-8 md:py-10 lg:grid-cols-[1.05fr_0.95fr]">
                 <div className="relative z-[1]">
-                    <h1 className="hero-reveal max-w-[740px] font-anton text-[clamp(4rem,12vw,9rem)] leading-[0.82] text-glow">
-                        FRONTEND
-                        <span className="block text-primary">SYSTEMS</span>
+                    <p className="hero-reveal hud-kicker mb-5">
+                        Portfolio / Full-Stack Developer
+                    </p>
+
+                    <h1 className="hero-reveal max-w-[740px] font-anton text-[clamp(3.6rem,6vw,8rem)] leading-[0.86] text-glow">
+                        FULLSTACK
+                        <span className="block text-primary">DEVELOPER</span>
                     </h1>
 
-                    <p className="hero-reveal mt-7 max-w-[610px] text-lg leading-8 text-muted-foreground">
-                        I build polished web interfaces that feel fast,
-                        responsive, and deliberate. This portfolio is designed
-                        like a command surface for the projects, tools, and
-                        product work behind the screen.
+                    <p className="hero-reveal mt-7 max-w-[610px] text-xl leading-8 text-muted-foreground">
+                        I am a full-stack developer who loves designing clean
+                        frontend experiences and building scalable backend
+                        database systems.
+                        <br />I build web apps and mobile apps with React,
+                        Next.js, and React Native.
                     </p>
 
                     <div className="hero-reveal mt-9 flex flex-wrap gap-4">
                         <Button as="link" href="#selected-projects">
-                            View Systems
+                            View Projects
                         </Button>
                         <Button
                             as="link"
                             href={`mailto:${GENERAL_INFO.email}`}
                             variant="secondary"
                         >
-                            Open Comms
+                            Contact Me
                         </Button>
-                    </div>
-
-                    <div className="hero-reveal mt-12 grid max-w-[660px] grid-cols-3 gap-3">
-                        {systemStats.map((stat) => (
-                            <div className="hud-panel p-4" key={stat.label}>
-                                <p className="hud-kicker text-[10px]">
-                                    {stat.label}
-                                </p>
-                                <p className="mt-3 font-anton text-3xl text-primary">
-                                    {stat.value}
-                                </p>
-                            </div>
-                        ))}
                     </div>
                 </div>
 
@@ -91,7 +76,7 @@ const Banner = () => {
                         <div className="absolute inset-6 border border-primary/15" />
                         <div className="absolute left-7 top-7 flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-secondary">
                             <Radar size={16} />
-                            Scanning
+                            Project Overview
                         </div>
 
                         <div className="absolute inset-[18%] rounded-full border border-primary/30" />

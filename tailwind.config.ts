@@ -64,9 +64,6 @@ export default {
                 anton: ['var(--font-anton)'],
                 'roboto-flex': ['var(--font-roboto-flex)'],
             },
-            padding: {
-                section: '140px',
-            },
             container: {
                 center: true,
                 padding: '1.25rem',

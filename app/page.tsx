@@ -6,12 +6,12 @@ import ProjectList from './_components/ProjectList';
 
 export default function Home() {
     return (
-        <div className="page-">
+        <>
             <Banner />
             <AboutMe />
             <Skills />
             <Experiences />
             <ProjectList />
-        </div>
+        </>
     );
 }

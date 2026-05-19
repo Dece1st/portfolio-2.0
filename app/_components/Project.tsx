@@ -14,7 +14,7 @@ const Project = ({ index, project }: Props) => {
             href={`/projects/${project.slug}`}
             className="project-item hud-panel group block overflow-hidden"
         >
-            <div className="relative aspect-[16/10] overflow-hidden border-b border-primary/20 bg-black/30">
+            <div className="relative aspect-[16/9] overflow-hidden border-b border-primary/20 bg-black/30 lg:aspect-[16/7]">
                 <Image
                     src={project.thumbnail}
                     alt={`${project.title} preview`}
@@ -32,17 +32,17 @@ const Project = ({ index, project }: Props) => {
                 </div>
             </div>
 
-            <div className="p-5 md:p-6">
+            <div className="p-4">
                 <div className="flex items-start justify-between gap-4">
                     <div>
                         <p className="hud-kicker">{project.year}</p>
-                        <h4 className="mt-3 font-anton text-4xl leading-none text-foreground transition group-hover:text-primary">
+                        <h4 className="mt-2 font-anton text-3xl leading-none text-foreground transition group-hover:text-primary">
                             {project.title}
                         </h4>
                     </div>
                 </div>
 
-                <div className="mt-6 flex flex-wrap gap-2">
+                <div className="mt-4 flex flex-wrap gap-2">
                     {project.techStack.slice(0, 4).map((tech) => (
                         <span
                             className="border border-primary/15 bg-primary/5 px-3 py-1 text-xs uppercase tracking-[0.16em] text-muted-foreground"

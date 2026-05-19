@@ -27,9 +27,13 @@ const Preloader = () => {
                     duration: 0.25,
                 })
                 .to(preloaderRef.current, {
-                    autoAlpha: 0,
-                    duration: 0.45,
+                    xPercent: -100,
+                    duration: 0.75,
                     delay: 0.55,
+                    ease: 'power4.inOut',
+                })
+                .set(preloaderRef.current, {
+                    display: 'none',
                 });
         },
         { scope: preloaderRef },

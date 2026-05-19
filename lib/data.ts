@@ -20,25 +20,42 @@ export const SOCIAL_LINKS = [
 export const MY_STACK = {
     languages: [
         {
-            name: 'Python',
-            icon: '/logo/python.svg',
+            name: 'TypeScript',
+            icon: '/logo/ts.png',
         },
-        {
-            name: 'C++',
-            icon: '/logo/cpp.svg',
-        },
-    ],
-    frontend: [
         {
             name: 'JavaScript',
             icon: '/logo/js.png',
         },
         {
-            name: 'TypeScript',
-            icon: '/logo/ts.png',
+            name: 'Python',
+            icon: '/logo/python.svg',
         },
         {
+            name: 'CSS',
+        },
+        {
+            name: 'HTML',
+        },
+        {
+            name: 'C++',
+            icon: '/logo/cpp.svg',
+        },
+        {
+            name: 'Java',
+        },
+        {
+            name: 'SQL',
+            icon: '/logo/postgreSQL.png',
+        },
+    ],
+    frameworks: [
+        {
             name: 'React',
+            icon: '/logo/react.png',
+        },
+        {
+            name: 'React Native',
             icon: '/logo/react.png',
         },
         {
@@ -49,30 +66,12 @@ export const MY_STACK = {
             name: 'Tailwind CSS',
             icon: '/logo/tailwind.png',
         },
-    ],
-    backend: [
         {
             name: 'Node.js',
             icon: '/logo/node.png',
         },
-        {
-            name: 'NestJS',
-            icon: '/logo/nest.svg',
-        },
-        {
-            name: 'Express.js',
-            icon: '/logo/express.png',
-        },
     ],
-    database: [
-        {
-            name: 'PostgreSQL',
-            icon: '/logo/postgreSQL.png',
-        },
-        {
-            name: 'MongoDB',
-            icon: '/logo/mongodb.svg',
-        },
+    'databases / tools': [
         {
             name: 'Firebase',
             icon: '/logo/firebase.svg',
@@ -81,19 +80,38 @@ export const MY_STACK = {
             name: 'Supabase',
             icon: '/logo/supabase.svg',
         },
-    ],
-    tools: [
         {
-            name: 'Git',
-            icon: '/logo/git.png',
+            name: 'MongoDB',
+            icon: '/logo/mongodb.svg',
+        },
+        {
+            name: 'PostgreSQL',
+            icon: '/logo/postgreSQL.png',
+        },
+        {
+            name: 'AWS',
+            icon: '/logo/aws.png',
         },
         {
             name: 'Docker',
             icon: '/logo/docker.svg',
         },
         {
-            name: 'AWS',
-            icon: '/logo/aws.png',
+            name: 'Git',
+            icon: '/logo/git.png',
+        },
+        {
+            name: 'GitHub',
+            icon: '/logo/github.png',
+        },
+        {
+            name: 'Claude',
+        },
+        {
+            name: 'Cursor',
+        },
+        {
+            name: 'Codex',
         },
     ],
 };
@@ -176,7 +194,7 @@ export const PROJECTS: IProject[] = [
         liveUrl: 'https://demo.epikcart.siphertech.com/',
         year: 2023,
         description: `Epikcart is a feature-rich, scalable e-commerce platform tailored for large businesses. It features dynamic product filtering, multi-language support with RTL, advanced inventory management, order tracking, and refund systems, offering a comprehensive solution for multi-vendor operations.`,
-        role: `As the frontend developer in a team of five, I: <br/>
+        role: `As a full-stack developer in a team of five, I: <br/>
         - Built the frontend from scratch using React, Redux, RTK Query, and Tailwind CSS.<br/>
         - Developed dynamic filtering logic for the product search page with admin-configurable parameters.<br/>
         - Integrated multi-language support with React i18n, including RTL handling.<br/>
@@ -229,7 +247,7 @@ export const PROJECTS: IProject[] = [
         year: 2023,
         description:
             'PropertyPro is a real estate management platform offering users a seamless experience to explore, manage, and view property listings. The application emphasizes accessibility and responsive design, ensuring a smooth interface across devices.',
-        role: `As the frontend developer, I:<br/>
+        role: `As a full-stack developer, I:<br/>
         - Built the frontend using React, Redux, RTK Query, Framer Motion, and Tailwind CSS.<br/>
         - Integrated dynamic state management for efficient handling of property data.<br/>
         - Implemented multi-language support with React i18n to cater to diverse audiences.<br/>
@@ -276,23 +294,23 @@ export const PROJECTS: IProject[] = [
 
 export const MY_EXPERIENCE = [
     {
-        title: 'Software Engineer (Frontend)',
-        company: 'Strativ AB',
-        duration: 'Dec 2024 - Present',
+        title: 'Software Engineering Intern',
+        company: 'Clustr',
+        duration: 'Oct 2025 - Current',
+        bullets: [
+            'Engineered a 6-state collaborative activity pipeline in Firebase Cloud Functions using Firestore transactions, Pub/Sub, and task queues to automate invite resolution, timed activity start/end transitions, and milestone progression.',
+            'Built a semantic intro-matching pipeline, achieving 95%+ match reliability across 500+ test cases, by using 786-D Vertex AI embeddings, Firestore vector search, and a 15-candidate tag-overlap fallback.',
+            'Automated a 6-stage activity lifecycle with Firebase Cloud Functions, reducing latency by ~37% and cutting redundant Firestore operations by ~45% via transactional state management, Pub/Sub, and task queues.',
+        ],
     },
     {
-        title: 'Frontend Developer',
-        company: 'Epikcoders',
-        duration: 'Oct 2023 - Nov 2024',
-    },
-    {
-        title: 'Frontend Engineer',
-        company: 'Anchorblock Technology',
-        duration: 'Oct 2022 - Sep 2023',
-    },
-    {
-        title: 'Frontend Developer (Part-time)',
-        company: 'Branex IT',
-        duration: 'Jan 2022 - Oct 2022',
+        title: 'Software Engineering Intern',
+        company: 'Art Beyond Sight',
+        duration: 'June 2024 - Aug 2024',
+        bullets: [
+            'Increased user engagement by 21%, by implementing responsive UI components using React, TypeScript, HTML, and CSS.',
+            "Updated the organization's Drupal CMS to improve website accessibility by adding WCAG-aligned alt text and descriptions.",
+            'Integrated REST APIs into a React frontend to enable dynamic content updates and improve user interaction responsiveness.',
+        ],
     },
 ];

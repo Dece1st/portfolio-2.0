@@ -45,7 +45,7 @@ const ProjectDetails = ({ project }: Props) => {
 
                 <div className="grid gap-5 lg:grid-cols-[0.95fr_1.05fr]">
                     <div className="project-reveal hud-panel h-fit p-6 md:p-8 lg:sticky lg:top-24">
-                        <p className="hud-kicker">Project Archive</p>
+                        <p className="hud-kicker">Project</p>
                         <h1 className="mt-5 font-anton text-6xl leading-none text-primary text-glow md:text-8xl">
                             {project.title}
                         </h1>
@@ -96,7 +96,7 @@ const ProjectDetails = ({ project }: Props) => {
 
                     <div className="grid gap-5">
                         <div className="project-reveal hud-panel p-6 md:p-8">
-                            <p className="hud-kicker">System Brief</p>
+                            <p className="hud-kicker">Overview</p>
                             <div className="markdown-text mt-5 text-lg leading-8 text-muted-foreground">
                                 {parse(project.description)}
                             </div>
@@ -104,7 +104,7 @@ const ProjectDetails = ({ project }: Props) => {
 
                         {project.role && (
                             <div className="project-reveal hud-panel p-6 md:p-8">
-                                <p className="hud-kicker">Role Matrix</p>
+                                <p className="hud-kicker">My Role</p>
                                 <div className="markdown-text mt-5 text-lg leading-8 text-muted-foreground">
                                     {parse(project.role)}
                                 </div>

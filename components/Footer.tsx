@@ -3,13 +3,16 @@ import { Mail, SatelliteDish } from 'lucide-react';
 
 const Footer = () => {
     return (
-        <footer className="pb-8 pt-section" id="contact">
-            <div className="container">
+        <footer
+            className="flex min-h-[calc(100svh-4.5rem)] scroll-mt-[4.5rem] items-center"
+            id="contact"
+        >
+            <div className="container py-8 md:py-10">
                 <div className="hud-panel grid gap-8 p-6 md:grid-cols-[1fr_auto] md:p-8">
                     <div>
-                        <p className="hud-kicker">Final Transmission</p>
+                        <p className="hud-kicker">Contact</p>
                         <h2 className="mt-4 font-anton text-5xl leading-none text-primary text-glow md:text-7xl">
-                            BUILD THE NEXT INTERFACE
+                            LET'S BUILD THE NEXT INTERFACE
                         </h2>
                         <a
                             href={`mailto:${GENERAL_INFO.email}`}

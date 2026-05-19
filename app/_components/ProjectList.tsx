@@ -30,17 +30,20 @@ const ProjectList = () => {
     );
 
     return (
-        <section className="py-section" id="selected-projects">
-            <div className="container" ref={containerRef}>
-                <div className="mb-10 flex flex-col justify-between gap-4 md:flex-row md:items-end">
-                    <SectionTitle title="Selected Systems" className="mb-0" />
+        <section
+            className="flex min-h-[calc(100svh-4.5rem)] scroll-mt-[4.5rem] items-center"
+            id="selected-projects"
+        >
+            <div className="container py-8 md:py-10" ref={containerRef}>
+                <div className="mb-6 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+                    <SectionTitle title="Selected Projects" className="mb-0" />
                     <p className="max-w-[430px] text-sm leading-6 text-muted-foreground">
-                        Each module opens into a deeper project readout with
-                        process notes, stack details, and interface captures.
+                        Each project opens into a focused detail page with
+                        context, stack details, role notes, and screenshots.
                     </p>
                 </div>
 
-                <div className="grid gap-5 md:grid-cols-2">
+                <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
                     {PROJECTS.map((project, index) => (
                         <Project
                             index={index}

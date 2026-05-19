@@ -12,7 +12,7 @@ const signals = [
     {
         icon: Layers,
         label: 'Interface Architecture',
-        copy: 'Reusable systems, clean component boundaries, and layouts that hold up across screen sizes.',
+        copy: 'Reusable components, clean boundaries, and layouts that hold up across screen sizes.',
     },
     {
         icon: Activity,
@@ -47,9 +47,12 @@ const AboutMe = () => {
     );
 
     return (
-        <section className="py-section" id="about-me">
-            <div className="container" ref={container}>
-                <SectionTitle title="Operator Profile" />
+        <section
+            className="flex min-h-[calc(100svh-4.5rem)] scroll-mt-[4.5rem] items-center"
+            id="about-me"
+        >
+            <div className="container py-8 md:py-10" ref={container}>
+                <SectionTitle title="About Me" />
 
                 <div className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
                     <div className="hud-panel about-reveal p-6 md:p-8">
@@ -58,9 +61,9 @@ const AboutMe = () => {
                             Fardin Saraf
                         </h2>
                         <p className="mt-6 text-lg leading-8 text-muted-foreground">
-                            I am a frontend developer focused on building web
-                            experiences that look sharp, move cleanly, and stay
-                            usable under real product constraints.
+                            I am a full-stack developer who enjoys designing
+                            frontend experiences and building backend systems
+                            that stay organized as products grow.
                         </p>
                         <div className="mt-8 grid grid-cols-2 gap-3">
                             <div className="hud-readout">
@@ -82,8 +85,9 @@ const AboutMe = () => {
                         <div className="hud-panel about-reveal p-6 md:p-8">
                             <p className="hud-kicker">Core Directive</p>
                             <p className="mt-5 text-3xl font-light leading-tight text-foreground md:text-5xl">
-                                Design the interface like a system: readable,
-                                fast, adaptive, and built with intent.
+                                I like turning ideas into usable web and mobile
+                                apps with React, React Native, and thoughtful
+                                database design.
                             </p>
                         </div>
 
